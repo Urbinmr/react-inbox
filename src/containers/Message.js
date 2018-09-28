@@ -1,15 +1,19 @@
 import { connect } from 'react-redux';
 
 import Message from '../components/Message.js';
+import { onCheck, onStar } from '../actions/index.js'
 
 const mapStateToProps = (state) => {
-    console.log('state: ', state)
     return {
-        'checked': state.checked,
-        'starred': state.starred,
-        'read': state.read,
-        'labels': state.labels
+        messageList: state.messageList
     }
 }
 
-export default connect(mapStateToProps)(Message);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        'onCheck': (message) => dispatch(onCheck(message)),
+        'onStar': (message) => dispatch(onStar(message))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Message);

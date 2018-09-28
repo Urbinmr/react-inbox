@@ -3,10 +3,15 @@ import '../App.css';
 import Message from '../containers/Message'
 
 export default class Messages extends Component {
+
+    componentDidMount() {
+        this.props.getMessages()
+    }
+
     render() {
         return (
             <div>
-                <Message checkBox={true} starred={true} read={false} labels={['dev']} />
+                {this.props.messageList.map((message, index) => <Message key={index} message={message} />)}
             </div>
         );
     }
